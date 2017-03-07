@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+        <meta name="description" content="administration panel to monitor and manage list of medical devices">
+        <meta name="author" content="irwan ibrahim, psg device intergration team">
+
+        <title>CD | Device Integration Gateway</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="./assets/customs/css/sidebar.css" rel="stylesheet">
+        <link href="./assets/customs/css/cd-design.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand"><a href="#">Device Menu</a></li>
+                    <li><a href="./">Dashboard</a></li>
+                    <li><a href="./?dc=patient-monitoring">Patient Monitoring</a></li>
+                    <li><a href="./?dc=ultrasound">Ultra Sound</a></li>
+                    <li><a href="./?dc=planmeca">PlanMeca X Ray</a></li>
+                    <li><a href="./?dc=analyzer">Analyzer</a></li>
+                    <li><a href="./?dc=fundus-camera">Fundus Camera</a></li>
+                    <li><a href="./?dc=endoscopy">Endoscopy Processor</a></li>
+                    <li><a href="./?dc=auditmeter">AudioMeter</a></li>
+                    <li><a href="./?dc=fbcmachine">FBC Machine</a></li>
+                    <li><a href="./?dc=spirometer">Spiro Meter</a></li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <ol class="breadcrumb">
+                        <li><a href="./"><i class="glyphicon glyphicon-home"></i></a></li>
+                        <li><a href="./?dc=patient-monitoring">Patient Monitoring</a></li>
+                        <li class="active"><i>&lt;device name&gt;</i></li>
+                    </ol>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="row statinfo">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h1>Online Duration</h1>
+                                            <div class="text-center">
+                                                <h2><i>&lt;hours&gt;</i> hours</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h1>No Of Request</h1>
+                                            <div class="text-center">
+                                                <h2><i>&lt;stdin&gt;</i> /min</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h1>Error Count</h1>
+                                            <div class="text-center">
+                                                <h2><i>&lt;error&gt;</i> </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h1>Error Rate</h1>
+                                            <div class="text-center">
+                                                <h2><i>&lt;error rate&gt;</i> %</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li role="presentation" class="active"><a href="#properties" aria-controls="properties" role="tab" data-toggle="tab">Properties</a></li>
+                                <li role="presentation"><a href="#apireference" aria-controls="apireference" role="tab" data-toggle="tab">API Reference</a></li>
+                                <li role="presentation"><a href="#logs" aria-controls="logs" role="tab" data-toggle="tab">Logs</a></li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="properties">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading"><h4>Device Properties</h4></div>
+                                                <table class="table ">
+                                                    <tr>
+                                                        <th style="width: 18%">Device ID</th>
+                                                        <td style="width: 2%">:</td>
+                                                        <td style="width: 30%"><i>&lt;device id&gt;</i></td>
+                                                        <th style="width: 18%">Device Category</th>
+                                                        <td style="width: 2%">:</td>
+                                                        <td style="width: 30%"><i>&lt;device category&gt;</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Brand</th>
+                                                        <td>:</td>
+                                                        <td><i>&lt;brand&gt;</i></td>
+                                                        <th>Model</th>
+                                                        <td>:</td>
+                                                        <td><i>&lt;model&gt;</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 18%;">Location</th>
+                                                        <td style="width: 2%;">:</td>
+                                                        <td colspan="4"><i>&lt;location&gt;</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Status</th>
+                                                        <td>:</td>
+                                                        <td><i>&lt;status&gt;</i></td>
+                                                        <th>Connection Type</th>
+                                                        <td>:</td>
+                                                        <td><i>&lt;Connection Type&gt;</i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Transmission Protocol</th>
+                                                        <td>:</td>
+                                                        <td><i>&lt;transmission protocol&gt;</i></td>
+                                                        <th>URI</th>
+                                                        <td>:</td>
+                                                        <td><i>&lt;uri&gt;</i></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="apireference">
+                                    <h5>GET</h5>
+                                    <p>Method to get all data from machine</p>
+                                    <h4>POST</h4>
+                                    <p>Method to insert new information for particular machine</p>
+                                    <h5>PUT</h5>
+                                    <h5>DELETE</h5>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="logs">
+                                    <div class="row">
+
+                                        <div class="col-sm-12">
+                                            <table class="table table-condensed">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Log</th>
+                                                        <th>Date Time</th>
+                                                        <th>Flag</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="4"><i>No transaction so far...</i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="./assets/jquery/jquery-3.1.1.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="./assets/main.js"></script>
+
+        <!-- Menu Toggle Script -->
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        </script>
+    </body>
+</html>

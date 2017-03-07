@@ -1,0 +1,31 @@
+.panel-heading { padding:6px 10px }
+
+.panel-cd { border-color: #000;}
+.panel-cd>.panel-heading { 
+    color: #fff;
+    background-color: #000;
+    border-color: #000;}
+
+.tab-content { 
+    border:1px solid #ddd;
+    padding:25px 10px 10px;
+    border-top: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.statinfo h1 {
+    text-transform: uppercase;
+    font-size: 1em; 
+    color:gray;
+    margin: 0;
+}
+
+.statinfo h2 { 
+    color:green;
+}
+
+/*.sidebar-nav li a .active  {
+    color: red;
+}*/
+
+.showlist {}

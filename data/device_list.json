@@ -1,0 +1,200 @@
+{
+    "patient-monitoring": [
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "172.19.2.33",
+                "connection": "gateway"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "1500",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "Propaq LT",
+            "location": {
+                "location_code": "00",
+                "location_name": "Pediatric Resuscitation Bay, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "Propaq LT",
+            "location": {
+                "location_code": "00",
+                "location_name": "Pediatric Resuscitation Bay, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "Propaq LT",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "Propaq LT",
+            "location": {
+                "location_code": "00",
+                "location_name": "Redzone, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "6000 series",
+            "location": {
+                "location_code": "00",
+                "location_name": "Ward 4C, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        },
+        {
+            "device_id": "14123191",
+            "brand": "Welch Allyn",
+            "model": "6000 series",
+            "location": {
+                "location_code": "00",
+                "location_name": "Ward 58, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        }
+    ],
+    "ultrasound": [
+        {
+            "device_id": "14123191",
+            "brand": "Samsung",
+            "model": "WS80A",
+            "location": {
+                "location_code": "00",
+                "location_name": "Ward 58, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        }
+    ],
+    "analyzer": [
+        {
+            "device_id": "14123191",
+            "brand": "Abott i-Stat",
+            "model": "i-Stat Chem 8",
+            "location": {
+                "location_code": "00",
+                "location_name": "Ward 58, Emergency Department",
+                "ipv4": "",
+                "connection": "cow"
+            },
+            "status": "online"
+        }
+    ]
+}
