@@ -156,12 +156,48 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="apireference">
-                                    <h5>GET</h5>
-                                    <p>Method to get all data from machine</p>
-                                    <h4>POST</h4>
-                                    <p>Method to insert new information for particular machine</p>
-                                    <h5>PUT</h5>
-                                    <h5>DELETE</h5>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">API TEST</div>
+                                        <div class="panel-body">
+                                            <form id='apiTestCall' class="form-horizontal">
+                                                <div class="col-sm-2">
+                                                    <div class='form-group form-group-sm'>
+                                                        <select id='ApiMethod' class="form-control input-sm">
+                                                            <option value="get">GET</option>
+                                                            <option value="put">PUT</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class='col-sm-4'>
+                                                    <div class='form-group form-group-sm'>
+                                                        <select id='ApiSelect' class='form-control'>
+                                                            <option value='patient-examinations'>Patient Examination</option>
+                                                            <option value='spiro-forced-tests'>Spiro Forced Tests</option>
+                                                            <option value='exam-graph'>Exam Graphs</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" id='ApiParameter' class="form-control input-sm" autocomplete="off" value='810204085611'/>
+                                                            <span class="input-group-btn">
+                                                                <button type="submit" class="btn btn-primary" >FETCH RESULT</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class='panel-heading panel-second-heading'>Fetch Result</div>
+                                        <div class='panel-body' style='background-color: #fcfcfc'>
+                                            <div class='row'>
+                                                <div class='col-sm-12'>
+                                                    <div id='apiFetchResult' class="jsonView"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="logs">
                                     <div class="row">
@@ -208,6 +244,26 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
+            $(function () {
+                $('#apiTestCall').submit(function (e) {
+                    var method = $('#ApiMethod').val();
+                    var selection = $('#ApiSelect').val()
+                    var parameter = $('#ApiParameter').val();
+
+                    e.preventDefault();
+                    $.ajax({
+                        crossOrigin: true,
+                        url: 'http://localhost:3000/'+ selection +'/' + parameter,
+                        type: method,
+                        dataType: "json",
+                        success: function (data) {
+                            var str = JSON.stringify(data, null, 12)
+                            $('#apiFetchResult').html(str);
+                        }
+                    });
+                });
+            });
+
         </script>
     </body>
 </html>
