@@ -23,7 +23,7 @@ function ItemBuilderList(deviceGroup, no, device) {
     html += "<td></td>";
     html += "<td><a href='./properties.html?dc=" + deviceGroup + "&did=x'>" + device.device_id + " : " + device.brand + ' ' + device.model + "</a></td>";
     html += "<td>" + device.location.location_name + "</td>";
-    html += "<td>" + device.status + "</td>";
+    html += "<td class='text-center'>" + device.status + "</td>";
     html += "<td>" + device.location.ipv4 + "</td>";
     html += "<td>" + device.location.connection + "</td>";
     html += "</tr>";

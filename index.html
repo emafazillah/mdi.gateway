@@ -32,7 +32,7 @@
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
-                    <li class="sidebar-brand"><a href="#">Device Menu</a></li>
+                    <li class="sidebar-brand"><a href="./">Device Menu</a></li>
                     <li><a href="./">Dashboard</a></li>
                     <li><a href="?dc=patient-monitoring" class='active'>Patient Monitoring</a></li>
                     <li><a href="?dc=ultrasound">Ultra Sound</a></li>
@@ -143,6 +143,7 @@
             
             $('.showlist').on('click',function(){
                 var showType = $(this).data('listtype');
+                console.log(showType);
                 if(showType=='card'){
                     $('#device-card').removeClass('hidden');
                     $('#device-card').show();
@@ -150,6 +151,7 @@
                     ListTrigger(0);
                 }
                 if(showType=='list'){
+                    $('#device-list').removeClass('hidden');
                     $('#device-card').hide();
                     $('#device-list').show();
                     ListTrigger(1)
