@@ -122,43 +122,49 @@
 
         <!-- Menu Toggle Script -->
         <script>
-            DeviceGroupActive(getParameterByName('dc'));
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-            $.getJSON("data/device_list.json", function (json) {
-                var deviceCategory = getParameterByName('dc');
-                var contentCard = '';
-                var contentList = '';
-                $.each(json, function (key, value) {
-                    if (key == deviceCategory) {
-                        $.each(value, function (k, v) {
-                            contentCard += ItemBuilderCard(deviceCategory,v);
-                            contentList += ItemBuilderList(deviceCategory,k, v);
-                        });
+            var page = window.location.pathname;
+            console.log(page);
+            if (page == '/home.html') {
+               alert('ok');
+            } else {
+                DeviceGroupActive(getParameterByName('dc'));
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
+                $.getJSON("data/device_list.json", function (json) {
+                    var deviceCategory = getParameterByName('dc');
+                    var contentCard = '';
+                    var contentList = '';
+                    $.each(json, function (key, value) {
+                        if (key == deviceCategory) {
+                            $.each(value, function (k, v) {
+                                contentCard += ItemBuilderCard(deviceCategory, v);
+                                contentList += ItemBuilderList(deviceCategory, k, v);
+                            });
+                        }
+                    });
+                    $('#device-card').html(contentCard);
+                    $('#device-list tbody').html(contentList);
+
+                });
+
+                $('.showlist').on('click', function () {
+                    var showType = $(this).data('listtype');
+                    if (showType == 'card') {
+                        $('#device-card').removeClass('hidden');
+                        $('#device-card').show();
+                        $('#device-list').hide();
+                        ListTrigger(0);
+                    }
+                    if (showType == 'list') {
+                        $('#device-list').removeClass('hidden');
+                        $('#device-card').hide();
+                        $('#device-list').show();
+                        ListTrigger(1)
                     }
                 });
-                $('#device-card').html(contentCard);
-                $('#device-list tbody').html(contentList);
-                
-            });
-            
-            $('.showlist').on('click',function(){
-                var showType = $(this).data('listtype');
-                if(showType=='card'){
-                    $('#device-card').removeClass('hidden');
-                    $('#device-card').show();
-                    $('#device-list').hide();
-                    ListTrigger(0);
-                }
-                if(showType=='list'){
-                    $('#device-list').removeClass('hidden');
-                    $('#device-card').hide();
-                    $('#device-list').show();
-                    ListTrigger(1)
-                }
-            });
+            }
         </script>
     </body>
 </html>
