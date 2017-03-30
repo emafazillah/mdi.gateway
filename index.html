@@ -43,6 +43,8 @@
                     <li><a href="?dc=auditmeter">AudioMeter</a></li>
                     <li><a href="?dc=fbcmachine">FBC Machine</a></li>
                     <li><a href="?dc=spirometer">Spiro Meter</a></li>
+                    <hr>
+                    <li><a href='http://localhost/CD-HIS-Sample/public_html' target='_blank'>HIS Form Sample</a></li>
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -143,7 +145,6 @@
             
             $('.showlist').on('click',function(){
                 var showType = $(this).data('listtype');
-                console.log(showType);
                 if(showType=='card'){
                     $('#device-card').removeClass('hidden');
                     $('#device-card').show();

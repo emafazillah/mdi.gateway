@@ -43,6 +43,8 @@
                     <li><a href="./?dc=auditmeter">AudioMeter</a></li>
                     <li><a href="./?dc=fbcmachine">FBC Machine</a></li>
                     <li><a href="./?dc=spirometer">Spiro Meter</a></li>
+                    <hr>
+                    <li><a href='http://localhost/CD-HIS-Sample/public_html' target='_blank'>HIS Form Sample</a></li>
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -52,12 +54,12 @@
                 <div class="container-fluid">
                     <ol class="breadcrumb">
                         <li><a href="./"><i class="glyphicon glyphicon-home"></i></a></li>
-                        <li><a href="./?dc=patient-monitoring">&lt; device type &gt;</a></li>
-                        <li class="active"><i>&lt;device name&gt;</i></li>
+                        <li><a href="./?dc=patient-monitoring" id='deviceType' class='first-letter'>&lt; device type &gt;</a></li>
+                        <li class="active" id='deviceName'><i>&lt;device name&gt;</i></li>
                     </ol>
 
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 hidden">
                             <div class="row statinfo">
                                 <div class="col-sm-12">
                                     <div class="panel panel-default">
@@ -99,7 +101,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <ul class="nav nav-tabs nav-justified" role="tablist">
                                 <li role="presentation" class="active"><a href="#properties" aria-controls="properties" role="tab" data-toggle="tab">Properties</a></li>
                                 <li role="presentation"><a href="#apireference" aria-controls="apireference" role="tab" data-toggle="tab">API Reference</a></li>
@@ -116,39 +118,39 @@
                                                     <tr>
                                                         <th style="width: 18%">Device ID</th>
                                                         <td style="width: 2%">:</td>
-                                                        <td style="width: 30%"><i>&lt;device id&gt;</i></td>
+                                                        <td style="width: 30%" id='deviceId'></td>
                                                         <th style="width: 18%">Device Category</th>
                                                         <td style="width: 2%">:</td>
-                                                        <td style="width: 30%"><i>&lt;device category&gt;</i></td>
+                                                        <td style="width: 30%" id='deviceCategory'><i>&lt;device category&gt;</i></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Brand</th>
                                                         <td>:</td>
-                                                        <td><i>&lt;brand&gt;</i></td>
+                                                        <td id='deviceBrand'><i>&lt;brand&gt;</i></td>
                                                         <th>Model</th>
                                                         <td>:</td>
-                                                        <td><i>&lt;model&gt;</i></td>
+                                                        <td id='deviceModel'><i>&lt;model&gt;</i></td>
                                                     </tr>
                                                     <tr>
                                                         <th style="width: 18%;">Location</th>
                                                         <td style="width: 2%;">:</td>
-                                                        <td colspan="4"><i>&lt;location&gt;</i></td>
+                                                        <td colspan="4" id='deviceLocation'><i>&lt;location&gt;</i></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Status</th>
                                                         <td>:</td>
-                                                        <td><i>&lt;status&gt;</i></td>
+                                                        <td id='deviceStatus'><i>&lt;status&gt;</i></td>
                                                         <th>Connection Type</th>
                                                         <td>:</td>
-                                                        <td><i>&lt;Connection Type&gt;</i></td>
+                                                        <td id='deviceConnectionType'></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Transmission Protocol</th>
                                                         <td>:</td>
-                                                        <td><i>&lt;transmission protocol&gt;</i></td>
+                                                        <td id='deviceProtocol'><i>&lt;transmission protocol&gt;</i></td>
                                                         <th>URI</th>
                                                         <td>:</td>
-                                                        <td><i>&lt;uri&gt;</i></td>
+                                                        <td id='resturi'></td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -174,6 +176,7 @@
                                                             <option value='patient-examinations'>Patient Examination</option>
                                                             <option value='spiro-forced-tests'>Spiro Forced Tests</option>
                                                             <option value='exam-graph'>Exam Graphs</option>
+                                                            <option value='pm-allreading'>All Reading</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -244,7 +247,43 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
+
+            function DeviceDetail(detail) {
+//                console.log(detail);
+                return detail;
+            }
+
+            function GetDeviceInfo() {
+                $.getJSON("data/device_list.json", function (json, cb) {
+                    var deviceCategory = getParameterByName('dc');
+                    var deviceId = getParameterByName('id');
+                    var deviceInfo;
+                    for (var i in json) {
+                        if (i == deviceCategory) {
+                            for (var j in json[i]) {
+                                if (json[i][j].device_id == deviceId) {
+                                    deviceInfo = json[i][j];
+                                    $('#deviceType').attr('href','./?dc='+deviceCategory);
+                                    $('#deviceType').text(deviceCategory);
+                                    $('#deviceName').text(deviceInfo.brand + ' ' + deviceInfo.model);
+                                    $('#deviceId').text(deviceInfo.device_id);
+                                    $('#deviceProtocol').text(deviceInfo.transmission_protocol);
+                                    $('#deviceModel').text(deviceInfo.model);
+                                    $('#deviceBrand').text(deviceInfo.brand);
+                                    $('#deviceLocation').text(deviceInfo.location.location_code+ ' '+ deviceInfo.location.location_name);
+                                    $('#deviceConnectionType').text(deviceInfo.location.connection);
+                                    $('#resturi').html(deviceInfo.restserver.host);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
             $(function () {
+
+                GetDeviceInfo()
+
                 $('#apiTestCall').submit(function (e) {
                     var method = $('#ApiMethod').val();
                     var selection = $('#ApiSelect').val()
@@ -253,10 +292,11 @@
                     e.preventDefault();
                     $.ajax({
                         crossOrigin: true,
-                        url: 'http://localhost:3000/'+ selection +'/' + parameter,
+                        url: 'http://localhost:8080/' + selection + '/' + parameter,
                         type: method,
                         dataType: "json",
                         success: function (data) {
+                            console.log(data);
                             var str = JSON.stringify(data, null, 12)
                             $('#apiFetchResult').html(str);
                         }
