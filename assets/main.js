@@ -20,8 +20,8 @@ function ItemBuilderList(deviceGroup, no, device) {
     var html = "";
     html += "<tr>";
     html += "<td>" + (no + 1) + "</td>";
-    html += "<td></td>";
-    html += "<td><a href='./properties.html?dc=" + deviceGroup + "&did=x'>" + device.device_id + " : " + device.brand + ' ' + device.model + "</a></td>";
+    html += "<td>" + device.device_id + "</td>";
+    html += "<td><a href='./properties.html?dc=" + deviceGroup + "&did=x'>" + device.brand + ' ' + device.model + "</a></td>";
     html += "<td>" + device.location.location_name + "</td>";
     html += "<td class='text-center'>" + device.status + "</td>";
     html += "<td>" + device.location.ipv4 + "</td>";
