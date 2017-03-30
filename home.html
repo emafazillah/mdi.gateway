@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+        <meta name="description" content="administration panel to monitor and manage list of medical devices">
+        <meta name="author" content="irwan ibrahim, psg device intergration team">
+
+        <title>CD | Device Integration Gateway v1</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="./assets/customs/css/sidebar.css" rel="stylesheet">
+        <link href="./assets/customs/css/cd-design.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand"><a href="./">Device Menu</a></li>
+                    <li><a href="./">Dashboard</a></li>
+                    <li><a href="?dc=patient-monitoring" class='active'>Patient Monitoring</a></li>
+                    <li><a href="?dc=ultrasound">Ultra Sound</a></li>
+                    <li><a href="?dc=planmeca">PlanMeca X Ray</a></li>
+                    <li><a href="?dc=analyzer">Analyzer</a></li>
+                    <li><a href="?dc=fundus-camera">Fundus Camera</a></li>
+                    <li><a href="?dc=endoscopy">Endoscopy Processor</a></li>
+                    <li><a href="?dc=auditmeter">AudioMeter</a></li>
+                    <li><a href="?dc=fbcmachine">FBC Machine</a></li>
+                    <li><a href="?dc=spirometer">Spiro Meter</a></li>
+                    <hr>
+                    <li><a href='http://localhost/CD-HIS-Sample/public_html' target='_blank'>HIS Form Sample</a></li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <h2>List Of Devices</h2>
+                    </div>
+
+                    <div class="row hidden">
+                        <div class="col-lg-12">
+                            <h1>Machine List</h1>
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <form class="form-inline">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" style='width: 280px'/>
+                                    <div class="input-group-btn">
+                                        <div class="btn btn-default"><i class='glyphicon glyphicon-search'></i> Filter</div>
+                                    </div>
+                                </div>
+
+                                <div class='btn-group btn-group-sm'>
+                                    <div class='btn btn-default showlist active' data-listtype='card'><i class='glyphicon glyphicon-th'></i></div>
+                                    <div class='btn btn-default showlist' data-listtype='list'><i class='glyphicon glyphicon-th-list'></i></div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="row" id="device-card"></div>
+                    <div class="row" >
+                        <div class="col-sm-12 hidden" id="device-list">
+                            <table class="table table-bordered table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Device Id</th>
+                                        <th>Device Name</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th>IPV4</th>
+                                        <th>Connection Type</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="./assets/jquery/jquery-3.1.1.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="./assets/main.js"></script>
+
+        <!-- Menu Toggle Script -->
+        <script>
+            DeviceGroupActive(getParameterByName('dc'));
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+            $.getJSON("data/device_list.json", function (json) {
+                var deviceCategory = getParameterByName('dc');
+                var contentCard = '';
+                var contentList = '';
+                $.each(json, function (key, value) {
+                    if (key == deviceCategory) {
+                        $.each(value, function (k, v) {
+                            contentCard += ItemBuilderCard(deviceCategory,v);
+                            contentList += ItemBuilderList(deviceCategory,k, v);
+                        });
+                    }
+                });
+                $('#device-card').html(contentCard);
+                $('#device-list tbody').html(contentList);
+                
+            });
+            
+            $('.showlist').on('click',function(){
+                var showType = $(this).data('listtype');
+                if(showType=='card'){
+                    $('#device-card').removeClass('hidden');
+                    $('#device-card').show();
+                    $('#device-list').hide();
+                    ListTrigger(0);
+                }
+                if(showType=='list'){
+                    $('#device-list').removeClass('hidden');
+                    $('#device-card').hide();
+                    $('#device-list').show();
+                    ListTrigger(1)
+                }
+            });
+        </script>
+    </body>
+</html>
