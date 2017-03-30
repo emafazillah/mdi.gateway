@@ -19,7 +19,7 @@
                         "param": "all"
                     }]
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-2",
@@ -45,7 +45,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-4",
@@ -58,7 +58,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-5",
@@ -71,7 +71,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-6",
@@ -84,7 +84,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-7",
@@ -97,7 +97,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-8",
@@ -110,7 +110,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-9",
@@ -123,7 +123,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-10",
@@ -136,7 +136,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-11",
@@ -149,7 +149,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-12",
@@ -162,7 +162,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-13",
@@ -175,7 +175,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         },
         {
             "device_id": "14123191-14",
@@ -188,7 +188,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         }
     ],
     "ultrasound": [
@@ -203,7 +203,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         }
     ],
     "analyzer": [
@@ -218,7 +218,7 @@
                 "connection": "cow",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "offline"
         }
     ],
     "spirometer": [
@@ -233,6 +233,7 @@
                 "connection": "cow",
                 "method": "syncronization"
             },
+            "status":"online",
             "transmission_protocol" : "http",
             "restserver": {
                 "host": "https://mdi-spiro-heroku.herokuapp.com/",
