@@ -44,7 +44,7 @@
                     <li><a href="./?dc=fbcmachine">FBC Machine</a></li>
                     <li><a href="./?dc=spirometer">Spiro Meter</a></li>
                     <hr>
-                    <li><a href='http://localhost/CD-HIS-Sample/public_html' target='_blank'>HIS Form Sample</a></li>
+                    <li><a href='https://mdi-sample-fetch.herokuapp.com/' target='_blank'>HIS Form Sample</a></li>
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -292,11 +292,10 @@
                     e.preventDefault();
                     $.ajax({
                         crossOrigin: true,
-                        url: 'http://localhost:8080/' + selection + '/' + parameter,
+                        url: 'https://mdi-spiro-heroku.herokuapp.com/' + selection + '/' + parameter,
                         type: method,
                         dataType: "json",
                         success: function (data) {
-                            console.log(data);
                             var str = JSON.stringify(data, null, 12)
                             $('#apiFetchResult').html(str);
                         }
