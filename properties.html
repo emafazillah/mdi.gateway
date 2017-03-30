@@ -176,7 +176,6 @@
                                                             <option value='patient-examinations'>Patient Examination</option>
                                                             <option value='spiro-forced-tests'>Spiro Forced Tests</option>
                                                             <option value='exam-graph'>Exam Graphs</option>
-                                                            <option value='pm-allreading'>All Reading</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -194,6 +193,18 @@
                                         </div>
                                         <div class='panel-heading panel-second-heading'>Fetch Result</div>
                                         <div class='panel-body' style='background-color: #fcfcfc'>
+                                            <div class='row'>
+                                                <div class='col-sm-12'>
+                                                    <div class='input-group input-group-sm'>
+                                                        <span class='input-group-addon'>REST URL</span>
+                                                        <input type='text' id='resturl' class='form-control disabled' readonly/>
+                                                        <div class='input-group-btn'>
+                                                            <button type='button' class='btn btn-primary' ><i class='glyphicon glyphicon-copy'></i> Copy URL</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
                                             <div class='row'>
                                                 <div class='col-sm-12'>
                                                     <div id='apiFetchResult' class="jsonView"></div>
@@ -296,6 +307,7 @@
                         type: method,
                         dataType: "json",
                         success: function (data) {
+                            $('#resturl').val('https://mdi-spiro-heroku.herokuapp.com/' + selection + '/' + parameter);
                             var str = JSON.stringify(data, null, 12)
                             $('#apiFetchResult').html(str);
                         }
