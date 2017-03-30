@@ -36,3 +36,6 @@
 .first-letter {
     text-transform:capitalize;
 }
+
+.text-green { color:green}
+.text-red { color:red}

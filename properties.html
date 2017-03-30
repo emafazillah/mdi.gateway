@@ -11,6 +11,7 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap-theme.min.css" />
 
         <!-- Custom CSS -->
         <link href="./assets/customs/css/sidebar.css" rel="stylesheet">
@@ -119,9 +120,9 @@
                                                         <th style="width: 18%">Device ID</th>
                                                         <td style="width: 2%">:</td>
                                                         <td style="width: 30%" id='deviceId'></td>
-                                                        <th style="width: 18%">Device Category</th>
+                                                        <th style="width: 18%">Device Serial</th>
                                                         <td style="width: 2%">:</td>
-                                                        <td style="width: 30%" id='deviceCategory'><i>&lt;device category&gt;</i></td>
+                                                        <td style="width: 30%" id='deviceSerial'><i>&lt;device category&gt;</i></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Brand</th>
@@ -161,7 +162,9 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">API TEST</div>
                                         <div class="panel-body">
+                                            
                                             <form id='apiTestCall' class="form-horizontal">
+                                                <input type='hidden' id='restfulhttp' />
                                                 <div class="col-sm-2">
                                                     <div class='form-group form-group-sm'>
                                                         <select id='ApiMethod' class="form-control input-sm">
@@ -269,6 +272,8 @@
                     var deviceCategory = getParameterByName('dc');
                     var deviceId = getParameterByName('id');
                     var deviceInfo;
+                    var path;
+                    var urlpath;
                     for (var i in json) {
                         if (i == deviceCategory) {
                             for (var j in json[i]) {
@@ -277,6 +282,7 @@
                                     $('#deviceType').attr('href','./?dc='+deviceCategory);
                                     $('#deviceType').text(deviceCategory);
                                     $('#deviceName').text(deviceInfo.brand + ' ' + deviceInfo.model);
+                                    $('#deviceSerial').text(deviceInfo.serial_number);
                                     $('#deviceId').text(deviceInfo.device_id);
                                     $('#deviceProtocol').text(deviceInfo.transmission_protocol);
                                     $('#deviceModel').text(deviceInfo.model);
@@ -284,6 +290,13 @@
                                     $('#deviceLocation').text(deviceInfo.location.location_code+ ' '+ deviceInfo.location.location_name);
                                     $('#deviceConnectionType').text(deviceInfo.location.connection);
                                     $('#resturi').html(deviceInfo.restserver.host);
+                                    
+                                    path = json[i][j].restserver;
+                                    $.each(path.path, function(i,v){
+                                        urlpath += "<option value='"+v.path+"'>"+v.name+"</option>";
+                                    });
+                                    $('#restfulhttp').val(path.host);
+                                    $('#ApiSelect').html(urlpath);
                                 }
                             }
                         }
@@ -299,15 +312,16 @@
                     var method = $('#ApiMethod').val();
                     var selection = $('#ApiSelect').val()
                     var parameter = $('#ApiParameter').val();
+                    var url = $('#restfulhttp').val();
 
                     e.preventDefault();
                     $.ajax({
                         crossOrigin: true,
-                        url: 'https://mdi-spiro-heroku.herokuapp.com/' + selection + '/' + parameter,
+                        url: url + selection + '/' + parameter,
                         type: method,
                         dataType: "json",
                         success: function (data) {
-                            $('#resturl').val('https://mdi-spiro-heroku.herokuapp.com/' + selection + '/' + parameter);
+                            $('#resturl').val(url + selection + '/' + parameter);
                             var str = JSON.stringify(data, null, 12)
                             $('#apiFetchResult').html(str);
                         }

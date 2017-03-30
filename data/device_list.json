@@ -22,9 +22,10 @@
             "status": "offline"
         },
         {
-            "device_id": "14123191-2",
+            "device_id": "USB_00000004",
             "brand": "Welch Allyn",
-            "model": "1500",
+            "model": "VSM 6000",
+            "serial_number": "103000401111",
             "location": {
                 "location_code": "00",
                 "location_name": "Redzone, Emergency Department",
@@ -32,7 +33,22 @@
                 "connection": "gateway",
                 "method": "terminal"
             },
-            "status": "online"
+            "status": "online",
+            "transmission_protocol": "http",
+            "restserver": {
+                "host": "https://mywildflyrestv2-emafazillah.rhcloud.com/api",
+                "path": [
+                    {
+                        "name": "All Patients",
+                        "path": "/tblpatientvsms",
+                        "param": "all"
+                    }, {
+                        "name": "Patient Last Reading",
+                        "path": "/tblpatientvsms/patientid",
+                        "param": "all"
+                    }
+                ]
+            }
         },
         {
             "device_id": "14123191-3",
@@ -233,32 +249,28 @@
                 "connection": "cow",
                 "method": "syncronization"
             },
-            "status":"online",
-            "transmission_protocol" : "http",
+            "status": "online",
+            "transmission_protocol": "http",
             "restserver": {
                 "host": "https://mdi-spiro-heroku.herokuapp.com/",
                 "path": [
                     {
-                        "name": "all patients",
-                        "path": "patients",
-                        "param": "all"
-                    },{
-                        "name": "patient examination",
+                        "name": "Patient Examination",
                         "path": "patient-examinations",
-                        "param" : "patient id (ic)"
-                    },{
-                        "name" : "patient examination latest",
-                        "path" : "patient-examinations-latest",
-                        "param" : "patient id (ic)"
-                    },{
-                        "name": "spiro forced test single",
+                        "param": "patient id (ic)"
+                    }, {
+                        "name": "Patient Examination Latest",
+                        "path": "patient-examinations-latest",
+                        "param": "patient id (ic)"
+                    }, {
+                        "name": "Spiro Forced Test Single",
                         "path": "spiro-forced-tests-single",
-                        "param" : "examination id"
-                    },{
-                        "name": "all spiro forced test",
+                        "param": "examination id"
+                    }, {
+                        "name": "All Spiro Forced Test",
                         "path": "spiro-forced-tests-single",
-                        "param" : "examination id"
-                    },{
+                        "param": "examination id"
+                    }, {
                         "name": "Examination Graph",
                         "path": "exam-graph",
                         "param": "spiro test id"
