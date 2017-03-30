@@ -127,7 +127,7 @@
             var page = window.location.pathname;
             console.log(page);
             if (page == '/') {
-                $('#mainArea').html('...');
+                $('#mainArea').load('welcome.html');
             } else {
                 DeviceGroupActive(getParameterByName('dc'));
                 $("#menu-toggle").click(function (e) {
