@@ -124,11 +124,7 @@
 
         <!-- Menu Toggle Script -->
         <script>
-            var page = window.location.pathname;
-            console.log(page);
-            if (page == '/') {
-                $('#mainArea').load('welcome.html');
-            } else {
+            
                 DeviceGroupActive(getParameterByName('dc'));
                 $("#menu-toggle").click(function (e) {
                     e.preventDefault();
@@ -166,7 +162,7 @@
                         ListTrigger(1)
                     }
                 });
-            }
+            
         </script>
     </body>
 </html>

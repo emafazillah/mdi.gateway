@@ -11,6 +11,7 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css" />
 
         <!-- Custom CSS -->
         <link href="./assets/customs/css/sidebar.css" rel="stylesheet">
@@ -44,7 +45,7 @@
                     <li><a href="?dc=fbcmachine">FBC Machine</a></li>
                     <li><a href="?dc=spirometer">Spiro Meter</a></li>
                     <hr>
-                    <li><a href='http://localhost/CD-HIS-Sample/public_html' target='_blank'>HIS Form Sample</a></li>
+                    <li><a href='https://mdi-sample-fetch.herokuapp.com/' target='_blank'>HIS Form Sample</a></li>
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
@@ -52,57 +53,59 @@
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    <div class="page-header">
-                        <h2>List Of Devices</h2>
-                    </div>
-
-                    <div class="row hidden">
-                        <div class="col-lg-12">
-                            <h1>Machine List</h1>
-                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                    <div id='mainArea'>
+                        <div class="page-header">
+                            <h2>List Of Devices</h2>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-12 text-right">
-                            <form class="form-inline">
-                                <div class="input-group input-group-sm">
-                                    <input type="text" class="form-control" style='width: 280px'/>
-                                    <div class="input-group-btn">
-                                        <div class="btn btn-default"><i class='glyphicon glyphicon-search'></i> Filter</div>
+                        <div class="row hidden">
+                            <div class="col-lg-12">
+                                <h1>Machine List</h1>
+                                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <form class="form-inline">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" style='width: 280px'/>
+                                        <div class="input-group-btn">
+                                            <div class="btn btn-default"><i class='glyphicon glyphicon-search'></i> Filter</div>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class='btn-group btn-group-sm'>
-                                    <div class='btn btn-default showlist active' data-listtype='card'><i class='glyphicon glyphicon-th'></i></div>
-                                    <div class='btn btn-default showlist' data-listtype='list'><i class='glyphicon glyphicon-th-list'></i></div>
-                                </div>
-                            </form>
+                                    <div class='btn-group btn-group-sm'>
+                                        <div class='btn btn-default showlist active' data-listtype='card'><i class='glyphicon glyphicon-th'></i></div>
+                                        <div class='btn btn-default showlist' data-listtype='list'><i class='glyphicon glyphicon-th-list'></i></div>
+                                    </div>
+                                </form>
 
+                            </div>
                         </div>
-                    </div>
 
-                    <br>
+                        <br>
 
-                    <div class="row" id="device-card"></div>
-                    <div class="row" >
-                        <div class="col-sm-12 hidden" id="device-list">
-                            <table class="table table-bordered table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Device Id</th>
-                                        <th>Device Name</th>
-                                        <th>Location</th>
-                                        <th>Status</th>
-                                        <th>IPV4</th>
-                                        <th>Connection Type</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
+                        <div class="row" id="device-card"></div>
+                        <div class="row" >
+                            <div class="col-sm-12 hidden" id="device-list">
+                                <table class="table table-bordered table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Device Id</th>
+                                            <th>Device Name</th>
+                                            <th>Location</th>
+                                            <th>Status</th>
+                                            <th>IPV4</th>
+                                            <th>Connection Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody >
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,43 +124,49 @@
 
         <!-- Menu Toggle Script -->
         <script>
-            DeviceGroupActive(getParameterByName('dc'));
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-            $.getJSON("data/device_list.json", function (json) {
-                var deviceCategory = getParameterByName('dc');
-                var contentCard = '';
-                var contentList = '';
-                $.each(json, function (key, value) {
-                    if (key == deviceCategory) {
-                        $.each(value, function (k, v) {
-                            contentCard += ItemBuilderCard(deviceCategory,v);
-                            contentList += ItemBuilderList(deviceCategory,k, v);
-                        });
+            var page = window.location.pathname;
+            console.log(page);
+            if (page == '/') {
+                $('#mainArea').load('welcome.html');
+            } else {
+                DeviceGroupActive(getParameterByName('dc'));
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });
+                $.getJSON("data/device_list.json", function (json) {
+                    var deviceCategory = getParameterByName('dc');
+                    var contentCard = '';
+                    var contentList = '';
+                    $.each(json, function (key, value) {
+                        if (key == deviceCategory) {
+                            $.each(value, function (k, v) {
+                                contentCard += ItemBuilderCard(deviceCategory, v);
+                                contentList += ItemBuilderList(deviceCategory, k, v);
+                            });
+                        }
+                    });
+                    $('#device-card').html(contentCard);
+                    $('#device-list tbody').html(contentList);
+
+                });
+
+                $('.showlist').on('click', function () {
+                    var showType = $(this).data('listtype');
+                    if (showType == 'card') {
+                        $('#device-card').removeClass('hidden');
+                        $('#device-card').show();
+                        $('#device-list').hide();
+                        ListTrigger(0);
+                    }
+                    if (showType == 'list') {
+                        $('#device-list').removeClass('hidden');
+                        $('#device-card').hide();
+                        $('#device-list').show();
+                        ListTrigger(1)
                     }
                 });
-                $('#device-card').html(contentCard);
-                $('#device-list tbody').html(contentList);
-                
-            });
-            
-            $('.showlist').on('click',function(){
-                var showType = $(this).data('listtype');
-                if(showType=='card'){
-                    $('#device-card').removeClass('hidden');
-                    $('#device-card').show();
-                    $('#device-list').hide();
-                    ListTrigger(0);
-                }
-                if(showType=='list'){
-                    $('#device-list').removeClass('hidden');
-                    $('#device-card').hide();
-                    $('#device-list').show();
-                    ListTrigger(1)
-                }
-            });
+            }
         </script>
     </body>
 </html>
