@@ -290,6 +290,7 @@
                                     $('#deviceLocation').text(deviceInfo.location.location_code+ ' '+ deviceInfo.location.location_name);
                                     $('#deviceConnectionType').text(deviceInfo.location.connection);
                                     $('#resturi').html(deviceInfo.restserver.host);
+                                    $('#deviceStatus').text(deviceInfo.status);
                                     
                                     path = json[i][j].restserver;
                                     $.each(path.path, function(i,v){
